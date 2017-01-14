@@ -1,0 +1,52 @@
+<ion-view view-title="Totales Quiniela">
+  <ion-content>
+ <div class="list card" ng-hide="!onoff">
+
+ <!-- inputs from json -->
+  <label class="item item-input" ng-repeat="item in formulario.corrientes">
+    <h1 class="input-label">{{item.descripcion}}</h1>
+    <input class="text-right" type="number" min="0" step="any" ng-model="data[item.ref]">
+  </label>
+
+  <!-- input premios -->
+  <label class="item item-input">
+    <h1 class="input-label">Premios Pagados</h1>
+    <input class="text-right" type="number" min="0" step="any" ng-model="data.premios">
+  </label>
+  <!-- aceptar -->
+  <button ng-click="toggleShow()" class="button button-block button-assertive">Aceptar</button>
+</div>
+
+<!-- Resultados -->
+	<div class="list card" ng-hide="onoff">
+    
+     <div class="row" >
+      <div class="col  text-center"><h2 class="positive">Total</h2></div>
+      <div class="col text-right"><h2 class="positive">{{totales() | currency:dollar}}</h2></div>
+     </div>
+     <div class="row">
+      <div class="col text-center"><h2 class="balanced">Ganancia</h2></div>
+      <div class="col text-right"><h2 class="balanced"> {{ganancia() | currency:dollar }}</h2></div>
+     </div>
+     <div class="row">
+      <div class="col text-center"><h2 class="calm">Premios</h2></div>
+      <div class="col text-right"><h2 class="calm">{{data.premios?data.premios:0 | currency:dollar}}</h2></div>
+     </div>
+     <div class="row">
+      <div class="col text-center"><h2 class="assertive">Entrega</h2></div>
+      <div class="col text-right"><h2 class="assertive">{{entrega()?entrega():0 | currency:dollar}}</h2></div>
+     </div>
+      <label class="item item-input">
+      <span class="input-label">Fecha</span>
+      <input type="date" ng-model="fecha">
+    </label>
+      <div class="row">
+      <div class="col"><button ng-click="toggleShow()" class="button button-block button-calm">Volver</button></div>
+      <div class="col"><button ng-click="alerta()" class="button button-block button-calm">Guardar</button></div>
+     </div>
+  </div>
+
+
+
+  </ion-content>
+</ion-view>
